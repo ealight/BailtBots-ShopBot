@@ -1,1 +1,1 @@
-worker: sh target/bin/bailbots-tg-shop
+worker: sh target/bin/workerBot
