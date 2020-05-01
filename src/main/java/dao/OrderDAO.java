@@ -9,22 +9,22 @@ import util.HibernateSessionFactoryUtil;
 import java.util.List;
 
 public class OrderDAO {
-    public List<Order> getAllItems(Long telegramId){
+    public List getAllItems(Long telegramId){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Query query = session.createQuery("from Order where telegramId = :telegramId and execute = false");
         query.setParameter("telegramId", telegramId);
-        List<Order> rams = query.getResultList();
+        List rams = query.getResultList();
         session.close();
         return rams;
     }
 
-    public List<Order> getItemsAtPage(int start, int maxRows, Long telegramId){
+    public List getItemsAtPage(int start, int maxRows, Long telegramId){
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Query query = session.createQuery("from Order where telegramId = :telegramId and execute = false");
         query.setParameter("telegramId", telegramId);
         query.setFirstResult(start);
         query.setMaxResults(maxRows);
-        List<Order> rams = query.getResultList();
+        List rams = query.getResultList();
         session.close();
         return rams;
     }
@@ -33,9 +33,9 @@ public class OrderDAO {
         Session session = HibernateSessionFactoryUtil.getSessionFactory().openSession();
         Query query = session.createQuery("from Order where id = :id");
         query.setParameter("id", id);
-        List<Order> items = query.list();
+        List items = query.list();
         session.close();
-        return items.get(0);
+        return (Order) items.get(0);
     }
 
     public void update(Order order){

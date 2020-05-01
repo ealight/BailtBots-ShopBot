@@ -23,6 +23,7 @@ public class BasketCreateRow implements CreateRow {
 
     @Override
     public void createPages(KeyboardRowFactory factoryRow, Integer page, Integer maxRows, Long telegramId, String category, String findText, InlineMenu inlineMenu) {
-        factoryRow.getRow(maxRows).add(new InlineKeyboardButton().setText("Страница " + (page) + "/" + orderService.getPagesCount(telegramId)).setCallbackData("Page-null:" + inlineMenu.toString()));
+        int pagesCount = orderService.getPagesCount(telegramId) == 0 ? 1 : orderService.getPagesCount(telegramId);
+        factoryRow.getRow(maxRows).add(new InlineKeyboardButton().setText("Страница " + (page) + "/" + pagesCount).setCallbackData("Page-null:" + inlineMenu.toString()));
     }
 }
