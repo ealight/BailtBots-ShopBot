@@ -5,6 +5,7 @@ import menu.inlinemenu.createrow.impl.BasketCreateRow;
 import menu.inlinemenu.createrow.impl.FindCreateRow;
 import menu.inlinemenu.createrow.impl.MarketCreateRow;
 import menu.inlinemenu.section.Section;
+import model.User;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.methods.updatingmessages.EditMessageReplyMarkup;
@@ -31,7 +32,9 @@ public class InlineMenu {
         createRowFactory.put("find", new FindCreateRow());
     }
 
-    public void setButtonMenu(SendMessage sendMessage, EditMessageReplyMarkup editMessage, Integer page, String category, Long telegramId, String findText, String action){
+    public void setButtonMenu(SendMessage sendMessage, EditMessageReplyMarkup editMessage, Integer page, String category, User user, String findText, String action){
+        Long telegramId = user.getTelegramID();
+
         InlineKeyboardMarkup markupInline = new InlineKeyboardMarkup();
 
         List<List<InlineKeyboardButton>> keyboardRowList = new ArrayList<>();
@@ -40,7 +43,7 @@ public class InlineMenu {
         factoryRow.createRow(MAX_ROWS + 1);
 
         CreateRow createRow = createRowFactory.get(action);
-        createRow.createProducts(factoryRow, page, MAX_ROWS, InlineMenu.this, telegramId, category, findText);
+        createRow.createProducts(factoryRow, page, MAX_ROWS, InlineMenu.this, user, category, findText);
 
         factoryRow.getRow(MAX_ROWS ).add(new InlineKeyboardButton().setText("Назад").setCallbackData("Previous-null:" + InlineMenu.this.toString()));
 

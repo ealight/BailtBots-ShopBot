@@ -3,6 +3,7 @@ package menu.inlinemenu.createrow.impl;
 import menu.inlinemenu.InlineMenu;
 import menu.inlinemenu.KeyboardRowFactory;
 import menu.inlinemenu.createrow.CreateRow;
+import model.User;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import service.ProductService;
 
@@ -10,7 +11,7 @@ public class FindCreateRow implements CreateRow {
     private ProductService productService = new ProductService();
 
     @Override
-    public void createProducts(KeyboardRowFactory factoryRow, Integer page, Integer maxRows, InlineMenu inlineMenu, Long telegramId, String category, String findText) {
+    public void createProducts(KeyboardRowFactory factoryRow, Integer page, Integer maxRows, InlineMenu inlineMenu, User user, String category, String findText) {
         if(productService.getItemsByNameAtPage((page - 1) * maxRows, maxRows, findText).size() == 0) {
             factoryRow.getRow(0).add(new InlineKeyboardButton().setText("По вашему запросу ничего не найдено.").setCallbackData("NotFound-null:null"));
         }

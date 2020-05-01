@@ -55,12 +55,12 @@ public class BasketPageSection implements Section {
 
     @Override
     public void editButton(User user, EditMessageReplyMarkup new_message) {
-        user.getInlineMenu().setButtonMenu(null, new_message, user.getPageInline(), null, user.getTelegramID(), null, "basket");
+        user.getInlineMenu().setButtonMenu(null, new_message, user.getPageInline(), null, user, null, "basket");
     }
 
     @Override
     public void sendMessage(User user, SendMessage sendMessage) {
-        user.getInlineMenu().setButtonMenu(sendMessage, null, user.getPageInline(), null, user.getTelegramID(), null, "basket");
+        user.getInlineMenu().setButtonMenu(sendMessage, null, user.getPageInline(), null, user, null, "basket");
     }
 
     @Override
