@@ -76,10 +76,10 @@ public class ComponentPageSection implements Section {
     @Override
     public void editButton(User user, EditMessageReplyMarkup new_message) {
         if(user.isFind() == false) {
-            user.getInlineMenu().setButtonMenu(null, new_message, user.getPageInline(), user.getCategory(), null, null, "market");
+            user.getInlineMenu().setButtonMenu(null, new_message, user.getPageInline(), user.getCategory(), user, null, "market");
         }
         else {
-            user.getInlineMenu().setButtonMenu(null, new_message, user.getPageInline(), null, null, user.getTextFind(), "find");
+            user.getInlineMenu().setButtonMenu(null, new_message, user.getPageInline(), null, user, user.getTextFind(), "find");
         }
     }
 
@@ -88,11 +88,11 @@ public class ComponentPageSection implements Section {
         if(user.isFind()){
             user.getInlineMenu().setButtonMenuFind(sendMessage,null, "Введите сюда то что вас интересует...");
             if(user.isTextFind()){
-                user.getInlineMenu().setButtonMenu(sendMessage, null, user.getPageInline(), null, null, user.getTextFind(), "find");
+                user.getInlineMenu().setButtonMenu(sendMessage, null, user.getPageInline(), null, user, user.getTextFind(), "find");
             }
         }
         else {
-            user.getInlineMenu().setButtonMenu(sendMessage, null, user.getPageInline(), user.getCategory(), null, null, "market");
+            user.getInlineMenu().setButtonMenu(sendMessage, null, user.getPageInline(), user.getCategory(), user, null, "market");
         }
     }
 
