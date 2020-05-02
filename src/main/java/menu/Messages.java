@@ -55,7 +55,6 @@ public class Messages extends TelegramLongPollingBot {
     public void sendMsgForStaticMenu(String s, String menuNav, User user) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.enableMarkdown(true);
-        System.out.println("2: " + user.getTelegramID());
         sendMessage.setChatId(user.getTelegramID());
         // sendMessage.setReplyToMessageId(message.getMessageId());
         sendMessage.setText(s);

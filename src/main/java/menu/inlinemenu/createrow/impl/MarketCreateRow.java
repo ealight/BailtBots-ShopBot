@@ -3,6 +3,7 @@ package menu.inlinemenu.createrow.impl;
 import menu.inlinemenu.InlineMenu;
 import menu.inlinemenu.KeyboardRowFactory;
 import menu.inlinemenu.createrow.CreateRow;
+import model.User;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.InlineKeyboardButton;
 import service.ProductService;
 
@@ -10,7 +11,7 @@ public class MarketCreateRow implements CreateRow {
     private ProductService productService = new ProductService();
 
     @Override
-    public void createProducts(KeyboardRowFactory factoryRow, Integer page, Integer maxRows, InlineMenu inlineMenu, Long telegramId, String category, String findText) {
+    public void createProducts(KeyboardRowFactory factoryRow, Integer page, Integer maxRows, InlineMenu inlineMenu, User user, String category, String findText) {
         for (int i = 0; i < productService.getRamsAtPage((page - 1) * maxRows, maxRows, category).size(); i++) {
             factoryRow.getRow(i).add(new InlineKeyboardButton().setText("(" + productService.getRamsAtPage((page - 1) * maxRows, maxRows, category).get(i).getPrice() + " грн) " + productService.getRamsAtPage((page - 1) * maxRows, maxRows, category).get(i).getName()).setCallbackData("Other-" + productService.getRamsAtPage((page - 1) * maxRows, maxRows, category).get(i).getId() + ":" + inlineMenu.toString()));
         }
