@@ -6,7 +6,6 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import util.HibernateSessionFactoryUtil;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDAO {
